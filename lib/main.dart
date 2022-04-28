@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Quote/Quote.dart';
+
 void main() {
   runApp(const MaterialApp(
     home: Card(),
@@ -124,23 +126,62 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
 
-  List<String> quotes = ['This', 'is', 'a', 'quote', '🙃', 'another one'];
+  List<Quote> quotes = [
+    Quote(text: 'I never think of the future it comes soon enough', author: 'Einstein'),
+    Quote(text: 'Money is the root of all evil', author: 'Jordan Belfort'),
+    Quote(text: 'I walk slowly but never walk backward', author: 'Abraham Lincoln'),
+    Quote(text: 'I never think of the future it comes soon enough', author: 'Einstein'),
+    Quote(text: 'Money is the root of all evil', author: 'Jordan Belfort'),
+    Quote(text: 'I walk slowly but never walk backward', author: 'Abraham Lincoln'),
+    Quote(text: 'I never think of the future it comes soon enough', author: 'Einstein'),
+    Quote(text: 'Money is the root of all evil', author: 'Jordan Belfort'),
+    Quote(text: 'I walk slowly but never walk backward', author: 'Abraham Lincoln'),
+    Quote(text: 'I never think of the future it comes soon enough', author: 'Einstein'),
+    Quote(text: 'Money is the root of all evil', author: 'Jordan Belfort'),
+    Quote(text: 'I walk slowly but never walk backward', author: 'Abraham Lincoln'),
+  ];
+
+  Widget quoteTemplate(Quote quote){
+
+      return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(quote.text,
+                  style: const TextStyle(
+                      fontSize: 20
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text( '~' + quote.author,
+                  style: const TextStyle(
+                      fontSize: 15,
+                      fontStyle: FontStyle.italic
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
+        margin: EdgeInsets.all(5),
+      );
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: quotes.map((e) =>
-          Center(child:
-            Container(
-                child: Text(e,
-                  style: const TextStyle(
-                    fontSize: 20
-                  ),
-                ),
-              margin: EdgeInsets.all(5),
-            )
-          )
-      ).toList(),
+      children: quotes.map((quote) => quoteTemplate(quote)).toList(),
     );
   }
 }
