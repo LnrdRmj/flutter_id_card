@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'Quote/Quote.dart';
+import 'Quote/QuoteWidget.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: Card(),
+    home: IdCard(),
   ));
 }
 
-class Card extends StatefulWidget {
-  const Card({Key? key}) : super(key: key);
+class IdCard extends StatefulWidget {
+  const IdCard({Key? key}) : super(key: key);
 
   @override
-  State<Card> createState() => _CardState();
+  State<IdCard> createState() => _IdCardState();
 }
 
-class _CardState extends State<Card> {
+class _IdCardState extends State<IdCard> {
 
   int level = 0;
 
@@ -141,49 +142,10 @@ class _QuoteListState extends State<QuoteList> {
     Quote(text: 'I walk slowly but never walk backward', author: 'Abraham Lincoln'),
   ];
 
-  Widget quoteTemplate(Quote quote){
-
-      return Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(quote.text,
-                  style: const TextStyle(
-                      fontSize: 20
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text( '~' + quote.author,
-                  style: const TextStyle(
-                      fontSize: 15,
-                      fontStyle: FontStyle.italic
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-        margin: EdgeInsets.all(5),
-      );
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+      children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
     );
   }
 }
-
-
