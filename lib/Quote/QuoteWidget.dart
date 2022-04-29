@@ -33,7 +33,7 @@ class QuoteCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -49,13 +49,13 @@ class QuoteCard extends StatelessWidget {
                 onPressed: () {
                   delete();
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.delete,
                   size: 20,
                 ))
           ],
         ),
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
       ),
     );
   }

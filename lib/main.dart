@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:tutorial_flutter/Pages/Home.dart';
 
+import 'Pages/ChooseLocation.dart';
+import 'Pages/Loading.dart';
 import 'Quote/Quote.dart';
 import 'Quote/QuoteWidget.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: IdCard(),
+  runApp(MaterialApp(
+    routes: {
+      '/' : (context) => Loading(),
+      '/home': (context) => Home(),
+      '/location': (context) => ChooseLocation(),
+      '/idcard': (context) => IdCard(),
+    },
+    initialRoute: '/',
   ));
 }
 
@@ -94,6 +103,7 @@ class _IdCardState extends State<IdCard> {
                   )
                 ],
               ),
+              FutureButton(),
               //SizedBox(height: 1000),
               //Text('ciao')
               QuoteList()
@@ -117,6 +127,38 @@ class _IdCardState extends State<IdCard> {
     );
   }
 }
+
+class FutureButton extends StatefulWidget {
+  const FutureButton({Key? key}) : super(key: key);
+
+  @override
+  State<FutureButton> createState() => _FutureButtonState();
+}
+
+class _FutureButtonState extends State<FutureButton> {
+
+  String buttonText = 'Premimi e vedi cosa succederà';
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+        onPressed: () {
+          Future.delayed(Duration(seconds: 3), () {
+            setState(() {
+              buttonText = 'Tadaaaaaa il testo è cambiato dopo 3 secondi';
+            });
+          });
+        },
+        child: Text(
+          buttonText,
+          style: TextStyle(
+            color: Colors.black
+          ),
+        )
+    );
+  }
+}
+
 
 class QuoteList extends StatefulWidget {
   const QuoteList({Key? key}) : super(key: key);
