@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data = data.isNotEmpty ? data : ModalRoute.of(context)!.settings.arguments as Map;
 
     return Scaffold(
       body: SafeArea(
@@ -27,8 +27,16 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: OutlinedButton.icon(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/location');
+                      onPressed: () async {
+                        dynamic result = await Navigator.pushNamed(context, '/location') as Map;
+                        setState(() {
+                          data = {
+                            'time': result['time'],
+                            'location': result['location'],
+                            'isDaytime': result['isDaytime'],
+                            'flag': result['flag']
+                          };
+                        });
                       },
                       icon: Icon(Icons.location_on_outlined),
                       label: Text('Edit location'),
