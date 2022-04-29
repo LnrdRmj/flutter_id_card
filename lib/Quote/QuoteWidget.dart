@@ -6,10 +6,12 @@ import 'Quote.dart';
 class QuoteCard extends StatelessWidget {
 
   final Quote quote;
+  final Function delete;
 
   const QuoteCard({
     Key? key,
-    required this.quote
+    required this.quote,
+    required this.delete
   }) : super(key: key);
 
   @override
@@ -43,6 +45,14 @@ class QuoteCard extends StatelessWidget {
                 ),
               ],
             ),
+            ElevatedButton(
+                onPressed: () {
+                  delete();
+                },
+                child: Icon(
+                  Icons.delete,
+                  size: 20,
+                ))
           ],
         ),
         margin: EdgeInsets.all(5),
