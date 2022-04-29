@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
@@ -35,6 +36,8 @@ class _LoadingState extends State<Loading> {
     await worldTime.getTime();
     print(worldTime.time);
 
+    // await Future.delayed(Duration(seconds: 3), () {});
+
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'time': worldTime.time,
       'location': worldTime.location,
@@ -55,9 +58,13 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Text(time)
+    return const Scaffold(
+      backgroundColor: Colors.blue,
+      body: Center(
+          child: SpinKitCubeGrid(
+            color: Colors.white,
+            size: 50.0,
+          )
       ),
     );
   }
